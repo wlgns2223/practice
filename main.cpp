@@ -79,6 +79,7 @@ int main(int argc, const char * argv[])
         Mat temp = detector.transformingView(curve, NORMAL_VIEW);
         Mat output = detector.drawPolyArea(frame);
         detected = detect(output, textGraph, modelWeights);
+    
         
 //        imshow("detected", detected);
 //        imshow("trans", trans);

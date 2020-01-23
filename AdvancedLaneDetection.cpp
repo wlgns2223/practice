@@ -9,7 +9,6 @@
 #include "AdvancedLaneDetection.hpp"
 
 void AdvnacedLaneDetection::changeSize(Mat input) {
-    //Change Image size to Size(640, 320)
     
     if(input.size() != this->size)
         resize(input, input, this->size);
@@ -22,10 +21,6 @@ Mat AdvnacedLaneDetection::loadImgAndResize(String path, int flag) {
     Mat temp = imread(path,flag);
     changeSize(temp);
     return temp;
-}
-
-AdvnacedLaneDetection::AdvnacedLaneDetection(){
-    
 }
 
 AdvnacedLaneDetection::AdvnacedLaneDetection(String path, int flag) {

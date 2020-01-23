@@ -35,7 +35,7 @@ private:
     vector<Point> rightFit_windowLine1, rightFit_windowLine2;
     
     //Original Sample Size Size(640, 360)
-    const Size size = Size(960,540);
+    const Size defaultSize = Size(960,540);
     
     Scalar GREEN  = Scalar(0,255,0);
     Scalar BLUE   = Scalar(255,0,0);
@@ -56,10 +56,11 @@ private:
     // Refactoring -- Editing
     Mat loadImgAndResize(String path, int flag = IMREAD_COLOR);
     void changeSize(Mat input);
+    
+    
+    
     void drawCurveline(Mat input, vector<Point> leftPt, vector<Point> rightPt);
     void drawWindowLine(Mat input);
-    
-    
     Mat sobelThresholding(Mat input, string dir = "x");
     Mat colorThresholding(Mat input);
     void clearFitPtVec();
