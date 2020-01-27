@@ -10,24 +10,15 @@
 #define ColorData_hpp
 #include "detectionHeader.h"
 
-enum Colorlist{
-    GREEN,
-    BLUE,
-    RED,
-    YELLOW
-};
-
-template <typename T>
 class ColorData
 {
 public:
-    void setColor(T color);
-    T getColor();
+    void setColor(string colorName, Scalar colorValue);
+    Scalar getColor(string desiredColor);
+    ColorData();
     
 private:
-    Colorlist colorName;
-    Scalar rgb;
-    
+    map<string, Scalar> colorList;
 };
 
 #endif /* ColorData_hpp */

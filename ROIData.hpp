@@ -10,19 +10,18 @@
 #define ROIData_hpp
 #include "detectionHeader.h"
 
-template <typename T>
 class ROIData
 {
 public:
-    void setSrcPts(vector<T> &pts);
-    vector<T> getSrcPts();
+    void setSrcPts(vector<Point2f> &pts);
+    vector<Point2f> getSrcPts();
     
-    void setDestPts(vector<T> &pts);
-    vector<T> getDestPts();
+    void setDestPts(vector<Point2f> &pts);
+    vector<Point2f> getDestPts();
     
 private:
-    bool isEmpty(vector<T> &pts);
-    vector<T> srcPts, destPts;
+    bool isEmpty(vector<Point2f> &pts);
+    vector<Point2f> srcPts, destPts;
 };
 
 

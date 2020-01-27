@@ -10,8 +10,8 @@
 
 void AdvnacedLaneDetection::changeSize(Mat input) {
     
-    if(input.size() != this->size)
-        resize(input, input, this->size);
+    if(input.size() != this->defaultSize)
+        resize(input, input, this->defaultSize);
     
 }
 
@@ -212,8 +212,8 @@ Mat AdvnacedLaneDetection::windowSearch(Mat input){
         int win_xright_low = rightx_current.x - margin;
         int win_xright_high = rightx_current.x + margin;
         
-        rectangle(out, Point(win_xleft_low, win_y_low), Point(win_xleft_high, win_y_high), GREEN);
-        rectangle(out, Point(win_xright_low, win_y_low), Point(win_xright_high, win_y_high), GREEN);
+        rectangle(out, Point(win_xleft_low, win_y_low), Point(win_xleft_high, win_y_high), colors->getColor("green"));
+        rectangle(out, Point(win_xright_low, win_y_low), Point(win_xright_high, win_y_high), colors->getColor("green"));
         
         //Index to calculate mean points
         vector<Point>leftIdx, rightIdx;
@@ -325,14 +325,14 @@ void AdvnacedLaneDetection::drawCurveline(Mat input, vector<Point> leftPt, vecto
 void AdvnacedLaneDetection::drawWindowLine(Mat input){
     
     //Draw best-fit curves
-    polylines(input, leftFitPt, false, YELLOW);
-    polylines(input, rightFitPt, false, YELLOW);
+    polylines(input, leftFitPt, false, colors->getColor("yellow"));
+    polylines(input, rightFitPt, false, colors->getColor("yellow"));
     
     //Draw fit curves + margins , - margin
-    polylines(input, leftFit_windowLine1, false, YELLOW);
-    polylines(input, leftFit_windowLine2, false, YELLOW);
-    polylines(input, rightFit_windowLine1, false, YELLOW);
-    polylines(input, rightFit_windowLine2, false, YELLOW);
+    polylines(input, leftFit_windowLine1, false, colors->getColor("yellow"));
+    polylines(input, leftFit_windowLine2, false, colors->getColor("yellow"));
+    polylines(input, rightFit_windowLine1, false, colors->getColor("yellow"));
+    polylines(input, rightFit_windowLine2, false, colors->getColor("yellow"));
     
     
     Mat windowCurve = Mat::zeros(input.size(), input.type());
@@ -342,8 +342,8 @@ void AdvnacedLaneDetection::drawWindowLine(Mat input){
     reverse(rightFit_windowLine2.begin(), rightFit_windowLine2.end());
     left.insert(left.end(), leftFit_windowLine2.begin(), leftFit_windowLine2.end());
     right.insert(right.end(), rightFit_windowLine2.begin(), rightFit_windowLine2.end());
-    fillConvexPoly(windowCurve, left, GREEN);
-    fillConvexPoly(windowCurve, right, GREEN);
+    fillConvexPoly(windowCurve, left, colors->getColor("green"));
+    fillConvexPoly(windowCurve, right, colors->getColor("green"));
     addWeighted(input, 1, windowCurve, 0.3, 0, input);
     
     
@@ -357,7 +357,7 @@ Mat AdvnacedLaneDetection::drawPolyArea(Mat input) {
     vector<Point> polyAreaPts = leftFitPt;
     reverse(rightFitPt.begin(), rightFitPt.end());
     polyAreaPts.insert(polyAreaPts.end(), rightFitPt.begin(), rightFitPt.end());
-    fillConvexPoly(area, polyAreaPts, GREEN);
+    fillConvexPoly(area, polyAreaPts, colors->getColor("green"));
     transformedArea =  transformingView(area, NORMAL_VIEW);
     addWeighted(input, 1, transformedArea, 0.3, 0, output);
     

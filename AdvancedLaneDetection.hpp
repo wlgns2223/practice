@@ -9,6 +9,8 @@
 #ifndef AdvancedLaneDetection_hpp
 #define AdvancedLaneDetection_hpp
 #include "detectionHeader.h"
+#include "ROIData.hpp"
+#include "ColorData.hpp"
 
 #define BIRDEYE_VIEW 0
 #define NORMAL_VIEW  1
@@ -29,6 +31,16 @@ private:
         Point2f(800,0), Point2f(800,540)
     };
     
+//    Scalar GREEN  = Scalar(0,255,0);
+//    Scalar BLUE   = Scalar(255,0,0);
+//    Scalar RED    = Scalar(0,0,255);
+//    Scalar YELLOW = Scalar(0,255,255);
+    
+    ColorData* colors;
+    ROIData* ROI;
+    
+    
+    
 
     vector<Point> leftFitPt, rightFitPt;
     vector<Point> leftFit_windowLine1,leftFit_windowLine2;
@@ -37,10 +49,7 @@ private:
     //Original Sample Size Size(640, 360)
     const Size defaultSize = Size(960,540);
     
-    Scalar GREEN  = Scalar(0,255,0);
-    Scalar BLUE   = Scalar(255,0,0);
-    Scalar RED    = Scalar(0,0,255);
-    Scalar YELLOW = Scalar(0,255,255);
+    
     
     const int sobelMinThreshold = 30;
     const int sobelMaxThreshold = 255;
@@ -67,6 +76,7 @@ private:
 
 public:
     AdvnacedLaneDetection();
+    AdvnacedLaneDetection(ROIData* ROI, ColorData* colorData);
     AdvnacedLaneDetection(String path, int flag = IMREAD_COLOR);
     
     Mat getImg();
